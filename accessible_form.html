@@ -1,0 +1,97 @@
+<!DOCTYPE HTML5>
+<html lang="en">
+	<head>
+		<title>Accessible Form</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="design.css">
+	</head>
+	<body>
+		<header>
+			<img src="photos/banner3.png" alt="a banner in the header"  class="banner">
+            <span class="heading" role="main header">
+                Accessible Form
+            </span>
+		</header>
+		<section>
+			<form id="form">
+            
+			    <label  id="name" class="label">Name:</label>
+				<input class="name" type="text" placeholder="Please Enter Your Name"  aria-labeledby="name" aria-required="true">
+            	
+			    <label  id="email" class="label">Email:</label>
+				<input class="email" type="email" placeholder="Enter Email" aria-labeledby="email" aria-required="true">
+            
+				<label id="gender" class="label">Gender:</label>
+				<input type="radio" class="gender" id="male" name="gender" value="m" aria-required="true" checked="true" aria-checked="true" >
+				<label aria-labelledby="male"> Male</label>
+				<input type="radio" id="female" class="gender" name="gender" value="f" aria-required="true"  aria-labeledby="gender" >
+				<label aria-labeledby="female"> Female</label>
+           
+			    <label aria-labeledby="range" id="age-label">Age:</label>
+				<input type="range" id="range" min="10" max="60" step="1" value="20" onchange="printValue('range','age')">
+				<input type="text" id="age" size="2" aria-required="true">
+            
+			    <label id="list" class="label">Weight:</label>
+				<!--<select aria-labeledby="list" aria-required="true">
+					<option>Select the range of your weight</option>
+					<option>40kgs-50kgs</option>
+					<option>51kgs-60kgs</option>
+					<option>61kgs-70kgs</option>
+					<option>71kgs-80kgs</option>
+				</select>-->
+				
+  					<button type="button" aria-labeledby="list" id="drop">Select your weight
+						  <span>click here to select your weight</span>
+					  </button>
+  					<ul id="dropdown-content">
+    					<li><a href="#">40kgs-50kgs</a></li>
+    					<li><a href="#">51kgs-60kgs</a></li>
+    					<li><a href="#">61kgs-70kgs</a></li>
+						<li><a href="#">71kgs-80kgs</a></li>
+  					</ul>
+				
+			
+			<button id="click">Submit
+				<span id="submit">Submit button is disabled now</span>
+			</button>
+			</form>
+		</section>
+		<footer>
+			<button id="pre" disabled>Prev</button>
+			<button id="nxt" onclick="nextPage()">Next</button>
+		</footer>
+		
+	</body>
+	<script>
+	var flag=0;
+	$(document).ready(function(){
+		
+		$('#drop').click(function(){
+			if(flag==0){
+				$('#dropdown-content').css("display","block");
+				flag=1;
+		}
+			else
+			{
+				$('#dropdown-content').css("display","none");
+				flag=0;
+			}
+		});
+		$('#dropdown-content li').click(function(){
+			
+			$('#drop').text($(this).text());
+			$('#dropdown-content').css("display","none");
+			flag=0;
+		});
+	});
+		function nextPage(){
+			window.location.href="accessible_content.html";
+		}
+        function printValue(source,  dest) {
+          	var src=document.getElementById(source).value;
+            var destination=document.getElementById(dest);
+            destination.value=src;
+        }
+	
+	</script>
+</html>

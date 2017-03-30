@@ -1,0 +1,92 @@
+<!DOCTYPE HTML5>
+<html lang="en">
+	<head>
+		<title>Accessible Form</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+       	<link rel="stylesheet" href="design.css">
+	</head>
+	<body>
+		<header>
+			<img src="photos/banner3.png" alt="a banner in the header"  class="banner">
+            <span class="heading" aria-label="This is your Content">
+                Your Content
+            </span>
+		</header>
+		<section id="content">
+			<p>
+                Here is an image of nature; a glimpse of eye-soothing greenery, blue sky and fresh air.
+                A flying object is also noticable.
+            </p>
+			
+			<section id="content_image">
+				<img src="photos/image1.jpg" alt="This is a glimpse of mother nature" id="img">
+				<button id="zoom">+</button>
+			</section>
+        </section>
+            <!--<div class="container">
+                <div class="modal fade" id="ModalImage" role="dialog">
+                    <div class="modal-dialog">-->
+        <div id="back">
+        <section id="modal-content">   
+            <div >
+                <div id="modal-body">
+                    <img src="photos/image1.jpg" alt="This is a glimpse of mother nature" class="zoom-in-image">
+                </div>
+                <div id="modal-header">
+                    <button type="button" id="closeModal">X</button>
+                </div>
+            </div>
+        </section>
+        </div>
+                    <!--</div>
+                </div>
+  
+            </div>-->
+		
+		<footer>
+			<button id="pre" onclick="prevPage()">Prev</button>
+			<button id="nxt" disabled>Next</button>
+		</footer>
+		
+	</body>
+	<script>
+        $(document).ready(function(){
+            $('#zoom').click(function(){
+               $('#content').hide();
+                $('#modal-content').show(150);
+                $('#back').show();
+                $('#pre').attr('disabled',true);
+                $('#pre').attr('tabindex','-1');
+                 $('#nxt').attr('tabindex','-1');
+                 $('#closeModal').focus();
+            });
+            $('#closeModal').click(function(){
+                $('#modal-content').hide(200);
+                $('#content').show();
+                $('#back').hide();
+                $('#pre').attr('disabled',false);
+            });
+        });
+		function prevPage(){
+			window.location.href="accessible_form.html";
+		}
+        window.onkeyup = function (event) {
+            if (event.keyCode == 27) {
+            $('#modal-content').hide(200);
+                $('#content').show();
+                $('#back').hide();
+                $('#pre').attr('disabled',false);
+  }
+ }
+       // function openModal(){
+         //   document.getElementById("modal-content").style.display='bolck';
+           // document.getElementById("content").style.display='none';
+       // }
+       // function closeModal() {
+        //    document.getElementById("modal-content").style.display='none';
+         //   document.getElementById("content").style.display='block';
+        //}
+	</script>
+</html>
